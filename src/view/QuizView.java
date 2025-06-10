@@ -3,11 +3,10 @@ package view;
 import model.Question;
 import model.User;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class QuizView {
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public QuizView() {
         this.scanner = new Scanner(System.in);

@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.Objects;
 
 public class Question {
-    private String questionText;
-    private List<String> possibleAnswers;
-    private String correctAnswer;
+    private final String questionText;
+    private final List<String> possibleAnswers;
+    private final String correctAnswer;
 
     public Question(String questionText, List<String> possibleAnswers, String correctAnswer) {
         if (questionText == null || questionText.trim().isEmpty()) {

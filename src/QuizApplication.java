@@ -8,8 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class QuizApplication {
-    private Quiz quiz;
-    private QuizView view;
+    private final Quiz quiz;
+    private final QuizView view;
     private User currentUser;
 
     public QuizApplication() {

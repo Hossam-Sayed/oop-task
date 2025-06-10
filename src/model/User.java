@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class User {
-    private String name;
-    private List<String> userAnswers; // To record answers
+    private final String name;
+    private final List<String> userAnswers; // To record answers
     private int score;
 
     public User(String name) {

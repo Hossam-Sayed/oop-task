@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Quiz {
-    private List<Question> questions;
-    private Random random;
+    private final List<Question> questions;
+    private final Random random;
 
     public Quiz() {
         this.questions = new ArrayList<>();
