@@ -1,5 +1,7 @@
 import model.Question;
+import model.TrueFalseQuestion;
 import model.User;
+import model.MultipleChoiceQuestion;
 import service.Quiz;
 import view.QuizView;
 
@@ -10,7 +12,6 @@ import java.util.List;
 public class QuizApplication {
     private final Quiz quiz;
     private final QuizView view;
-    private User currentUser;
 
     public QuizApplication() {
         this.quiz = new Quiz();
@@ -20,22 +21,23 @@ public class QuizApplication {
 
     private void initializeQuestions() {
         // Example questions
-        quiz.addQuestion(new Question("What is the capital of France?",
+        quiz.addQuestion(new TrueFalseQuestion("Is the Llama a mammal", "True"));
+        quiz.addQuestion(new MultipleChoiceQuestion("What is the capital of France?",
                 Arrays.asList("Paris", "London", "Berlin", "Rome"), "Paris"));
-        quiz.addQuestion(new Question("Which planet is known as the Red Planet?",
+        quiz.addQuestion(new MultipleChoiceQuestion("Which planet is known as the Red Planet?",
                 Arrays.asList("Mars", "Jupiter", "Venus", "Mercury"), "Mars"));
-        quiz.addQuestion(new Question("What is 2 + 2?",
+        quiz.addQuestion(new MultipleChoiceQuestion("What is 2 + 2?",
                 Arrays.asList("3", "4", "5", "6"), "4"));
-        quiz.addQuestion(new Question("Who painted the Mona Lisa?",
+        quiz.addQuestion(new MultipleChoiceQuestion("Who painted the Mona Lisa?",
                 Arrays.asList("Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet"), "Leonardo da Vinci"));
-        quiz.addQuestion(new Question("What is the largest ocean on Earth?",
+        quiz.addQuestion(new MultipleChoiceQuestion("What is the largest ocean on Earth?",
                 Arrays.asList("Atlantic", "Indian", "Arctic", "Pacific"), "Pacific"));
     }
 
     public void start() {
         view.displayWelcomeMessage();
         String userName = view.getUserInput("Please enter your name: ");
-        currentUser = new User(userName);
+        User currentUser = new User(userName);
 
         int numberOfQuestions = 0;
         boolean isValidInput = false;

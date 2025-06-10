@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Collections;
 import java.util.Objects;
 
-public class Question {
+public abstract class Question {
     private final String questionText;
     private final List<String> possibleAnswers;
     private final String correctAnswer;
