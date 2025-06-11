@@ -24,12 +24,6 @@ public class Quiz {
         this.questions.add(question);
     }
 
-    /**
-     * Creates a random sub-quiz from the available questions.
-     *
-     * @param numberOfQuestions The number of random questions to include in the quiz.
-     * @return A list of randomly selected questions.
-     */
     public List<Question> createRandomQuiz(int numberOfQuestions) {
         if (numberOfQuestions <= 0) {
             throw new IllegalArgumentException("Number of questions must be positive.");
@@ -49,24 +43,26 @@ public class Quiz {
      *
      * @param user          The user object to update the score for.
      * @param quizQuestions The list of questions presented to the user.
-     * @param userResponses A list of user's answers, in the same order as quizQuestions.
+     * @param userResponses A list of user's raw string answers, in the same order as quizQuestions.
      */
     public void calculateScore(User user, List<Question> quizQuestions, List<Integer> userResponses) {
         user.resetProgress(); // Reset user's score and answers
         int currentScore = 0;
         for (int i = 0; i < quizQuestions.size(); i++) {
-            if (i < userResponses.size()) { // Ensure we don't go out of bounds
+            if (i < userResponses.size()) {
                 Question question = quizQuestions.get(i);
                 String userAnswer = question.getPossibleAnswers().get(userResponses.get(i) - 1);
+                System.out.println("User answer is " + userAnswer);
                 if (question.isCorrect(userAnswer)) {
                     currentScore++;
+                } else {
+                    System.out.println("Wrong Answer!");
                 }
-                user.recordAnswer(userAnswer); // Record the answer in the user's history
+                user.recordAnswer(userAnswer);
             }
         }
         user.setScore(currentScore);
     }
-
 
     public List<Question> getAllQuestions() {
         return Collections.unmodifiableList(questions);

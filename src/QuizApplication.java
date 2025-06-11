@@ -21,11 +21,12 @@ public class QuizApplication {
 
     private void initializeQuestions() {
         // Example questions
-        quiz.addQuestion(new TrueFalseQuestion("Is the Llama a mammal", "True"));
+        quiz.addQuestion(new TrueFalseQuestion("Is the Llama a mammal?", "True"));
         quiz.addQuestion(new MultipleChoiceQuestion("What is the capital of France?",
                 Arrays.asList("Paris", "London", "Berlin", "Rome"), "Paris"));
         quiz.addQuestion(new MultipleChoiceQuestion("Which planet is known as the Red Planet?",
                 Arrays.asList("Mars", "Jupiter", "Venus", "Mercury"), "Mars"));
+        quiz.addQuestion(new TrueFalseQuestion("Is the Earth flat?", "False"));
         quiz.addQuestion(new MultipleChoiceQuestion("What is 2 + 2?",
                 Arrays.asList("3", "4", "5", "6"), "4"));
         quiz.addQuestion(new MultipleChoiceQuestion("Who painted the Mona Lisa?",
@@ -41,6 +42,7 @@ public class QuizApplication {
 
         int numberOfQuestions = 0;
         boolean isValidInput = false;
+
         while (!isValidInput) {
             try {
                 String numQuestionsStr = view.getUserInput("How many questions would you like to attempt? (Max " + quiz.getAllQuestions().size() + "): ");
@@ -55,15 +57,14 @@ public class QuizApplication {
             }
         }
 
-
         List<Question> currentQuizQuestions = quiz.createRandomQuiz(numberOfQuestions);
         List<Integer> userResponses = new ArrayList<>();
 
         for (int i = 0; i < currentQuizQuestions.size(); i++) {
             Question question = currentQuizQuestions.get(i);
-            view.displayQuestion(i + 1, question);
+            view.displayQuestion(i + 1, question.getFormattedQuestion());
             try {
-                String userAnswerStr = view.getUserInput("Your answer (write the answer number): ");
+                String userAnswerStr = view.getUserInput("Your answer (enter the answer number): ");
                 Integer userAnswer = Integer.parseInt(userAnswerStr);
                 userResponses.add(userAnswer);
             } catch (NumberFormatException e) {

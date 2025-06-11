@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class User {
     private final String name;
-    private final List<String> userAnswers; // To record answers
+    private final List<String> userAnswers;
     private int score;
 
     public User(String name) {
@@ -23,7 +23,7 @@ public class User {
     }
 
     public List<String> getUserAnswers() {
-        return new ArrayList<>(userAnswers); // Return a copy to prevent external modification
+        return new ArrayList<>(userAnswers);
     }
 
     public void recordAnswer(String answer) {
@@ -34,6 +34,13 @@ public class User {
         this.score++;
     }
 
+    public void setScore(int score) {
+        if (score < 0) {
+            throw new IllegalArgumentException("Score cannot be negative.");
+        }
+        this.score = score;
+    }
+
     public int getScore() {
         return score;
     }
@@ -41,10 +48,6 @@ public class User {
     public void resetProgress() {
         this.userAnswers.clear();
         this.score = 0;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 
     @Override

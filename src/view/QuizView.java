@@ -1,6 +1,5 @@
 package view;
 
-import model.Question;
 import model.User;
 
 import java.util.Scanner;
@@ -21,9 +20,9 @@ public class QuizView {
         System.out.println(message);
     }
 
-    public void displayQuestion(int questionNumber, Question question) {
+    public void displayQuestion(int questionNumber, String formattedQuestion) {
         System.out.println("\n--- Question " + questionNumber + " ---");
-        System.out.println(question);
+        System.out.println(formattedQuestion);
     }
 
     public void displayScore(User user) {
@@ -37,8 +36,6 @@ public class QuizView {
     }
 
     public void closeScanner() {
-        if (scanner != null) {
-            scanner.close();
-        }
+        scanner.close();
     }
 }
